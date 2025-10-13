@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Concepts Demo</title>
+</head>
+<body>
+    <script>
+        // 1️⃣ map() - Transform array elements
+        function double(num) {
+            return num * 2;
+        }
+
+        let ar = [1, 2, 8, 4];
+        let doubled = ar.map(double);
+        console.log("Doubled Array:", doubled);   // [2, 4, 16, 8]
+
+        // 2️⃣ reduce() - Combine all elements (product)
+        let product = ar.reduce((total, current) => total * current, 1);
+        console.log("Product of all elements:", product);  // 64
+
+        // 3️⃣ filter() - Keep only even numbers
+        let evenNumbers = ar.filter(num => num % 2 === 0);
+        console.log("Even Numbers:", evenNumbers); // [2, 8, 4]
+
+        // 4️⃣ Destructuring
+        let z = [1, 2, 3, 4, 56];
+        const [one, two, , three] = z;
+        console.log("Value of 'three':", three); // 4
+
+        // 5️⃣ Spread Operator - Merge arrays
+        let c = [1, 2, 3];
+        let v = [4, 5];
+        let spread = [...c, ...v];
+        console.log("Spread Array:", spread); // [1, 2, 3, 4, 5]
+
+        // 6️⃣ Promise Example
+        let p = new Promise((resolve, reject) => {
+            let a = 1 + 1;
+            if (a === 2) {
+                resolve("Success");
+            } else {
+                reject("Failed");
+            }
+        });
+
+        console.log("Before Promise Execution");
+
+        p.then((message) => {
+            console.log("This is in THEN:", message);
+        }).catch((message) => {
+            console.log("This is in CATCH:", message);
+        }).finally(() => {
+            console.log("This is in FINALLY block");
+        });
+
+        // 7️⃣ Fetch API Example (working endpoint)
+       fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(data => {
+    //data.forEach(post => console.log(post));
+    data.map((user)=>{console.log(user.name)})
+  })
+  .catch(error => console.log("Fetch Error:", error));
+
+//   asyn fun
+console.log("asyn function");
+async function name() {
+    try{
+        const l= await fetch('https://jsonplaceholder.typicode.com/users');
+        const a=await l.json();
+        a.map((user)=>{console.log(user.name)})
+
+    }
+    catch(err){console.log(err);}
+
+    
+}
+name();
+    </script>
+</body>
+</html>
